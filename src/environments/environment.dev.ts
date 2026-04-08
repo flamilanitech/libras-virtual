@@ -9,5 +9,6 @@ export const environment = {
   imagePath,
   imgLoading,
   iconSign,
-  baseUrl: 'http://localhost:4200'
+  baseUrl: 'http://localhost:4200',
+  clerkPublishableKey: 'pk_test_c3RlcmxpbmctY29sbGllLTQxLmNsZXJrLmFjY291bnRzLmRldiQ'
 };

@@ -24,7 +24,14 @@
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 540px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .divHeader.h1 {

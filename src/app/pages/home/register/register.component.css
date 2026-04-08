@@ -1,0 +1,79 @@
+.register-container {
+  padding: 10px;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.clerk-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}
+
+.register-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.register-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #2a2a72 0%, #009ffd 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.register-header p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+clerk-sign-up {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Ocultar o link interno do Clerk */
+::ng-deep .cl-footerAction {
+  display: none !important;
+}
+
+.login-prompt {
+  margin-top: 20px;
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  width: 100%;
+}
+
+.login-prompt p {
+  color: #666;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+.btn-login {
+  display: inline-block;
+  background-color: #2a2a72;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(42, 42, 114, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+  background-color: #1a1a5a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(42, 42, 114, 0.4);
+}

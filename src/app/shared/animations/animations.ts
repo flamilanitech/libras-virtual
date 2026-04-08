@@ -168,7 +168,7 @@ export const zoomFadeAnimation = trigger('routeAnimations', [
 
 export const directionalSlideAnimation = trigger('routeAnimations', [
   // (⬅️ slide da esquerda) - HomePage
-/*   transition('* => HomePage', [
+  /*   transition('* => HomePage', [
     style({ position: 'relative' }),
     query(
       ':enter, :leave',
@@ -211,7 +211,7 @@ export const directionalSlideAnimation = trigger('routeAnimations', [
     ]),
   ]), */
 
-    transition('* => HomePage', [
+  transition('* => HomePage', [
     style({ position: 'relative' }),
     query(
       ':enter, :leave',
@@ -299,7 +299,7 @@ export const directionalSlideAnimation = trigger('routeAnimations', [
     ]),
   ]),
 
-      // Zoom-fade padrão para outras rotas
+  // Zoom-fade padrão para outras rotas
   transition('* => FingerspellingDetailPage', [
     style({ position: 'relative' }),
     query(
@@ -391,7 +391,7 @@ export const directionalSlideAnimation = trigger('routeAnimations', [
     ]),
   ]),
 
-    // Zoom-fade padrão para outras rotas
+  // Zoom-fade padrão para outras rotas
   transition('* => AlphabetDetailPage', [
     style({ position: 'relative' }),
     query(
@@ -483,8 +483,8 @@ export const directionalSlideAnimation = trigger('routeAnimations', [
     ]),
   ]),
 
- // Zoom-fade padrão para outras rotas
-    transition('* => FingerspellingPage', [
+  // Zoom-fade padrão para outras rotas
+  transition('* => FingerspellingPage', [
     style({ position: 'relative' }),
     query(
       ':enter, :leave',

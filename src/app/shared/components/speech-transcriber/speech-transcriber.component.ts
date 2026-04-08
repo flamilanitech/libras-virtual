@@ -9,6 +9,9 @@ import {
 import { FormGroup, FormBuilder, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { BootstrapIconsModule } from 'ng-bootstrap-icons';
+import { SpeechRecognition } from '@capacitor-community/speech-recognition';
+import { Capacitor } from '@capacitor/core';
+
 
 @Component({
     selector: 'app-speech-transcriber',
@@ -37,53 +40,89 @@ export class SpeechTranscriberComponent implements OnInit, OnDestroy {
   speechForm!: FormGroup;
 
   constructor(private fb: FormBuilder) {
-    const SpeechRecognition =
+    const isNative = Capacitor.isNativePlatform();
+
+    if (isNative) {
+      this.initNativeRecognition();
+    } else {
+      this.initWebRecognition();
+    }
+
+    this.speechForm = this.fb.group({
+      textSpeech: [''],
+    });
+  }
+
+  async initNativeRecognition() {
+    try {
+      const permissions = await SpeechRecognition.checkPermissions();
+      if (permissions.speechRecognition !== 'granted') {
+        const result = await SpeechRecognition.requestPermissions();
+        if (result.speechRecognition !== 'granted') {
+          console.warn('Speech recognition permission not granted');
+        }
+      }
+
+
+      SpeechRecognition.addListener('partialResults', (data: any) => {
+        if (data.matches && data.matches.length > 0) {
+          // In native, partial matches are cumulative or the full sentence
+          const transcript = data.matches[0];
+          this.textSpeech = transcript;
+          this.textControl?.setValue(this.textSpeech);
+        }
+      });
+    } catch (e) {
+      console.error('Error initializing native speech recognition:', e);
+    }
+  }
+
+  initWebRecognition() {
+    const SpeechRecognitionWeb =
       (window as any).SpeechRecognition ||
       (window as any).webkitSpeechRecognition;
 
-    if (SpeechRecognition) {
-      this.recognition = new SpeechRecognition();
+    if (SpeechRecognitionWeb) {
+      this.recognition = new SpeechRecognitionWeb();
       this.recognition.lang = 'pt-BR';
       this.recognition.continuous = true;
-      this.recognition.interimResults = false;
+      this.recognition.interimResults = true;
 
       this.recognition.onresult = (event: any) => {
-       let interimTranscript = '';
         for (let i = event.resultIndex; i < event.results.length; i++) {
           const transcript = event.results[i][0].transcript;
           if (event.results[i].isFinal) {
             this.textSpeech += transcript + ' ';
-          } else {
-            interimTranscript += transcript;
+            this.textControl?.setValue(this.textSpeech);
           }
         }
       };
 
       this.recognition.onstart = () => {
         this.isListening = true;
+        console.log('Web Voice recognition started');
       };
 
       this.recognition.onend = () => {
-        this.isListening = false;
-
-
+        console.log('Web Voice recognition ended');
         if (this.isListening) {
-          this.recognition.start();
+          try {
+            this.recognition.start();
+          } catch (e) {
+            console.warn('Web Recognition restart failed:', e);
+          }
         }
       };
 
       this.recognition.onerror = (event: any) => {
-        console.error('Erro no reconhecimento:', event.error);
-        this.isListening = false;
-
+        console.error('Erro no reconhecimento web:', event.error);
+        if (event.error === 'no-speech') return;
+        if (event.error === 'not-allowed') {
+          alert('Permissão de microfone não concedida no navegador.');
+          this.isListening = false;
+        }
       };
-    } else {
-      alert('Reconhecimento de fala não suportado neste navegador.');
     }
-
-    this.speechForm = this.fb.group({
-      textSpeech: [''],
-    });
   }
 
   ngOnInit(): void {
@@ -104,21 +143,57 @@ export class SpeechTranscriberComponent implements OnInit, OnDestroy {
   }
 
 
-  startRecognition() {
-    if (!this.isListening) {
-      this.textSpeech = '';
-      this.isListening = true;
-      this.recognition.start();
-      this.focusTextArea();
+  async startRecognition() {
+    if (this.isListening) return;
+
+    this.textSpeech = '';
+    this.textControl?.setValue('');
+    this.isListening = true;
+
+    if (Capacitor.isNativePlatform()) {
+      try {
+        const available = await SpeechRecognition.available();
+        if (available.available) {
+          await SpeechRecognition.start({
+            language: 'pt-BR',
+            partialResults: true,
+            popup: false,
+          });
+        } else {
+          alert('Reconhecimento de fala não disponível neste dispositivo.');
+          this.isListening = false;
+        }
+      } catch (e) {
+        console.error('Native Start failed:', e);
+        this.isListening = false;
+      }
+    } else if (this.recognition) {
+      try {
+        this.recognition.start();
+      } catch (e) {
+        console.error('Web Start failed:', e);
+        this.isListening = false;
+      }
+    } else {
+      alert('Reconhecimento de fala não suportado.');
+      this.isListening = false;
     }
+    this.focusTextArea();
   }
 
-  stopRecognition() {
-    if (this.isListening) {
-      this.isListening = false;
+
+  async stopRecognition() {
+    this.isListening = false;
+    if (Capacitor.isNativePlatform()) {
+      try {
+        await SpeechRecognition.stop();
+      } catch (e) {
+        console.error('Native Stop failed:', e);
+      }
+    } else if (this.recognition) {
       this.recognition.stop();
-      this.resetSpeech();
     }
+    this.resetSpeech();
   }
 
   resetSpeech() {
@@ -163,8 +238,10 @@ export class SpeechTranscriberComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if (this.isListening) {
-      this.recognition.stop();
+      this.stopRecognition();
     }
     this.resetSpeech();
+    SpeechRecognition.removeAllListeners();
   }
+
 }
