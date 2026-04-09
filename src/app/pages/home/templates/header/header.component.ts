@@ -12,6 +12,9 @@ import { ClerkService, ClerkUserButtonComponent } from 'ngx-clerk';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
   standalone: true,
+  host: {
+    'style': 'display: block;'
+  },
   imports: [RouterLink, MenuComponent, CommonModule, ClerkUserButtonComponent],
   animations: [
     trigger('headerSlide', [

@@ -50,6 +50,8 @@ clerk-user-profile {
 
 clerk-sign-in {
   margin-top: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 /* Ocultar o link interno "Não possui uma conta? Registre-se" do Clerk */
