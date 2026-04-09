@@ -10,4 +10,6 @@ export const environment = {
   imgLoading,
   iconSign,
   baseUrl: 'https://librasvirtual.com.br',
+  clerkPublishableKey:
+    'pk_test_c3RlcmxpbmctY29sbGllLTQxLmNsZXJrLmFjY291bnRzLmRldiQ',
 };

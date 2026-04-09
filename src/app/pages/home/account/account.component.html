@@ -1,0 +1,31 @@
+<app-breadcrumb [title]="title" [link]="link"></app-breadcrumb>
+
+<div class="account-container">
+  <card-ui>
+    <div class="clerk-wrapper">
+      <div
+        *ngIf="clerkService.user$ | async as user; else anonymous"
+        class="profile-section"
+      >
+        <div class="user-header">
+          <h2>Olá, {{ user.firstName || "Usuário" }}!</h2>
+          <p>Aqui você pode gerenciar suas informações.</p>
+        </div>
+        <clerk-user-profile></clerk-user-profile>
+      </div>
+
+      <ng-template #anonymous>
+        <div class="login-section">
+          <clerk-sign-in></clerk-sign-in>
+
+          <div class="register-prompt">
+            <p>Ainda não tem conta?</p>
+            <a routerLink="/registro" class="btn btn-primary text-white"
+              >Criar uma nova conta</a
+            >
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </card-ui>
+</div>

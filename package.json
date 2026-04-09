@@ -1,12 +1,13 @@
 {
   "name": "libras-virtual",
-  "version": "2.5.5",
+  "version": "2.5.6",
   "scripts": {
     "ng": "ng",
     "release": "npm version patch && npm run build && git push && git push --tags",
     "preversion": "node version-update.js",
     "version": "git add . && echo ✔️ Atualizando para versão $npm_package_version",
     "prebuild": "node version-update.js",
+    "build:patch": "node version-update.js --increment && npm run build",
     "build-dev": "ng build --configuration development",
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
@@ -26,10 +27,13 @@
     "@angular/platform-browser-dynamic": "^17.3.12",
     "@angular/router": "^17.3.12",
     "@angular/service-worker": "^17.3.12",
+    "@capacitor-community/speech-recognition": "^6.0.0",
     "@capacitor/android": "^6.1.2",
     "@capacitor/angular": "^2.0.3",
+    "@capacitor/assets": "^3.0.5",
     "@capacitor/core": "latest",
     "@capacitor/ios": "^6.1.2",
+    "@clerk/localizations": "^4.3.0",
     "@mediapipe/camera_utils": "^0.3.1675466862",
     "@mediapipe/drawing_utils": "^0.3.1675466124",
     "@mediapipe/hands": "^0.4.1675469240",
@@ -37,10 +41,14 @@
     "@ng-web-apis/common": "^4.11.1",
     "@ng-web-apis/speech": "^4.11.1",
     "@popperjs/core": "^2.11.6",
+    "@tensorflow-models/handpose": "^0.0.7",
+    "@tensorflow/tfjs": "^3.18.0",
     "angular-animations": "^0.11.0",
     "bootstrap": "^5.3.3",
     "face-api.js": "^0.22.2",
+    "fingerpose": "^0.1.0",
     "ng-bootstrap-icons": "^13.1.2-canary.1",
+    "ngx-clerk": "^0.2.0",
     "rxjs": "~7.8.0",
     "tesseract.js": "^6.0.1",
     "tslib": "^2.3.0",
@@ -55,6 +63,7 @@
     "@capacitor/cli": "6.2.1",
     "@netlify-builder/deploy": "^5.0.0",
     "@types/bootstrap": "^5.2.10",
+    "@types/fingerpose": "^0.1.1",
     "@types/jasmine": "~4.3.0",
     "@types/leaflet": "^1.9.18",
     "jasmine-core": "~4.6.0",
@@ -66,5 +75,8 @@
     "leaflet": "^1.9.4",
     "ngx-joyride": "^2.5.0",
     "typescript": "5.2"
+  },
+  "resolutions": {
+    "@tensorflow/tfjs": "3.18.0"
   }
 }
