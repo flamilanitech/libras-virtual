@@ -30,7 +30,7 @@ export const cINITIALS: iInitials[] = [
     link: `/${processString(StringsNamesUrl.dialogo)}`,
     title: StringsNamesUrl.dialogo,
     image: img07,
-    active: false,
+    active: true,
   },
   {
     id: '4',
@@ -51,7 +51,7 @@ export const cINITIALS: iInitials[] = [
     link: `/${processString(StringsNamesUrl.assistenteVoz)}`,
     title: StringsNamesUrl.assistenteVoz,
     image: img08,
-    active: false,
+    active: true,
   },
   {
     id: '7',
@@ -74,7 +74,7 @@ const indexedINITIALS: { [id: string]: iInitials } = cINITIALS.reduce(
     acc[current.id] = current;
     return acc;
   },
-  {},
+  {}
 );
 
 console.log(indexedINITIALS);
