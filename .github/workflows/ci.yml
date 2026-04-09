@@ -1,0 +1,50 @@
+name: CI/CD Libras Virtual
+
+on:
+  push:
+    branches:
+      - develop
+  workflow_dispatch: # Permite execução manual pelo GitHub
+
+jobs:
+  build_and_release:
+    name: Build & Auto-Release
+    runs-on: ubuntu-latest
+    # Evita loops infinitos se o commit já tiver [skip ci]
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Código 🚀
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configurar Node.js 🟢
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Instalar Dependências 📦
+        run: npm ci
+
+      - name: Rodar Build (Produção) 🏗️
+        run: npm run build
+
+      - name: Configurar Git 🛠️
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Incrementar Versão e Tag 🔖
+        run: |
+          # Bumps version (e roda version-update.js via preversion)
+          # O commit gerado incluirá package.json e src/environments/version.ts
+          npm version patch -m "🔖 Auto-release version %s [skip ci]"
+          
+      - name: Subida para Develop (Push) ⬆️
+        run: |
+          git push origin develop --tags
