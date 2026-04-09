@@ -1,1 +1,28 @@
-<p>privacy works!</p>
+<card-ui [cardStyle]="'containerCardFinger justifyContentStart'">
+  <app-breadcrumb [title]="title" [link]="link"></app-breadcrumb>
+
+  <div class="privacy-content">
+    <p>Esta Política de Privacidade descreve como o aplicativo <strong>Libras Virtual</strong> trata as suas informações e garante a sua privacidade ao utilizar nossas funcionalidades.</p>
+
+    <h2>1. Coleta e Armazenamento de Dados</h2>
+    <p>O Libras Virtual foi desenvolvido com o compromisso de respeitar a sua privacidade. <strong>Não coletamos, não armazenamos e não compartilhamos nenhum dado pessoal identificável.</strong></p>
+
+    <h2>2. Uso da Câmera</h2>
+    <p>Para fornecer a funcionalidade de reconhecimento de sinais em Libras (Língua Brasileira de Sinais), o aplicativo solicita permissão para acessar a câmera do seu dispositivo.</p>
+
+    <ul>
+      <li><strong>Processamento em Tempo Real:</strong> As imagens capturadas pela câmera são processadas instantaneamente no próprio dispositivo para realizar a detecção de gestos através de algoritmos de inteligência artificial.</li>
+      <li><strong>Sem Armazenamento:</strong> Nenhuma imagem ou vídeo capturado pela câmera é salvo na memória do dispositivo, enviado para nossos servidores ou compartilhado com terceiros.</li>
+      <li><strong>Finalidade Exclusiva:</strong> O acesso à câmera é utilizado exclusivamente para permitir a tradução dos sinais em tempo real, sem qualquer gravação.</li>
+    </ul>
+
+    <h2>3. Segurança</h2>
+    <p>Como o aplicativo não realiza a coleta de dados de usuários, garantimos que sua navegação e uso das ferramentas de Libras ocorram de forma privada e segura em seu próprio ambiente.</p>
+
+    <h2>4. Alterações nesta Política</h2>
+    <p>Reservamo-nos o direito de atualizar esta política de privacidade periodicamente. Recomendamos a revisão desta página para se manter informado sobre as nossas práticas de proteção à privacidade.</p>
+
+    <div class="divider"></div>
+    <p><small>Última atualização: Abril de 2026</small></p>
+  </div>
+</card-ui>
