@@ -23,6 +23,8 @@ import { HandDetectorComponent } from './hand-detector/hand-detector.component';
 import { ComputerVisonComponent } from './computer-vison/computer-vison.component';
 import { InitialLibrasComponent } from './initial-libras/initial-libras.component';
 import { GestureFingersDetectorComponent } from 'src/app/shared/components/gesture-fingers-detector/gesture-fingers-detector.component';
+import { TermsComponent } from 'src/app/pages/home/templates/footer/terms/terms.component';
+import { PrivacyComponent } from 'src/app/pages/home/templates/footer/privacy/privacy.component';
 
 const routes: Routes = [
   {
@@ -33,6 +35,14 @@ const routes: Routes = [
         path: '',
         component: InitialsComponent,
         data: { animation: 'HomePage' },
+      },
+      {
+        path: 'termos',
+        component: TermsComponent,
+      },
+      {
+        path: 'privacidade',
+        component: PrivacyComponent,
       },
       {
         path: processString(StringsNamesUrl.datilologia),

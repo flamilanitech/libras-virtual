@@ -1,7 +1,8 @@
 .card-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
+  gap: 15px;
+  justify-content: center;
 }
 
 .cardItem {
@@ -21,7 +22,7 @@
 .cardItem img {
   border-radius: 10px;
   width: auto;
-  height: 130px;
+  height: 120px;
   border: 2px solid #3f51b5;
 }
 
@@ -43,6 +44,7 @@
   margin: 0 auto;
   margin-top: 7px;
   text-indent: -10px;
+  font-size: 12px;
 }
 
 .cdk-drag-disabled {

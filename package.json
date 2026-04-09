@@ -1,6 +1,6 @@
 {
   "name": "libras-virtual",
-  "version": "2.5.4",
+  "version": "2.5.5",
   "scripts": {
     "ng": "ng",
     "release": "npm version patch && npm run build && git push && git push --tags",
