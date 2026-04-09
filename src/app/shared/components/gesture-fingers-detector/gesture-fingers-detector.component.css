@@ -4,7 +4,6 @@
   align-items: center;
 }
 
-
 #video-wrapper {
   position: relative;
   width: 100%;
@@ -19,7 +18,8 @@
   aspect-ratio: 4 / 3;
 }
 
-video, canvas {
+video,
+canvas {
   position: absolute;
   top: 0;
   left: 0;

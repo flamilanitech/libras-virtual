@@ -2,33 +2,50 @@
   <app-breadcrumb [title]="title" link="/"></app-breadcrumb>
 </card-ui>
 <div class="containerDialogue">
-  <a #tooltip="matTooltip" matTooltip="Ajuda" matTooltipPosition="above" (click)="onClickHelp()">
+  <a
+    #tooltip="matTooltip"
+    matTooltip="Ajuda"
+    matTooltipPosition="above"
+    (click)="onClickHelp()"
+  >
     <bi name="question-circle-fill" class="sizeIcon mb-2 float-end"></bi>
   </a>
-  <div [joyrideStep]="viewSteps[0].joyrideStep" [title]="viewSteps[0].title" [text]="viewSteps[0].description">
+  <div
+    [joyrideStep]="viewSteps[0].joyrideStep"
+    [title]="viewSteps[0].title"
+    [text]="viewSteps[0].description"
+  >
     <div class="dialog-container">
       @for (msg of combinedDialogues; track msg; let i = $index) {
-        <div
-          [ngClass]="{'message-row': true, 'right': msg.sender === 'B'}">
-          <div class="gif-wrapper">
-            @if (gifLoading[i]) {
-              <div class="gif-loading">
-                <span class="spinner"></span>
-              </div>
-            }
-            <div [hidden]="gifLoading[i]">
-              @if (msg.sender === 'A') {
-                <div class="message-sender sender-green">Pessoa A</div>
-              } @else {
-                <div class="message-sender sender-black">Pessoa B</div>
-              }
-            </div>
-            <img [src]="msg.gif" (load)="onGifLoad(i)" [hidden]="gifLoading[i]" class="gif" />
-            <div [hidden]="gifLoading[i]" class="message" [ngClass]="{'b-message': msg.sender === 'B'}">
-              <span class="message-text">{{ msg.text }}</span>
-            </div>
+      <div [ngClass]="{ 'message-row': true, right: msg.sender === 'B' }">
+        <div class="gif-wrapper">
+          @if (gifLoading[i]) {
+          <div class="gif-loading">
+            <span class="spinner"></span>
           </div>
-          <!--     <div class="gif-container">
+          }
+          <div [hidden]="gifLoading[i]">
+            @if (msg.sender === 'A') {
+            <div class="message-sender sender-green">Pessoa A</div>
+            } @else {
+            <div class="message-sender sender-black">Pessoa B</div>
+            }
+          </div>
+          <img
+            [src]="msg.gif"
+            (load)="onGifLoad(i)"
+            [hidden]="gifLoading[i]"
+            class="gif"
+          />
+          <div
+            [hidden]="gifLoading[i]"
+            class="message"
+            [ngClass]="{ 'b-message': msg.sender === 'B' }"
+          >
+            <span class="message-text">{{ msg.text }}</span>
+          </div>
+        </div>
+        <!--     <div class="gif-container">
           <img
             *ngIf="gifLoading[i]"
             [src]="imgLoading"
@@ -42,32 +59,39 @@
             <div [hidden]="gifLoading[i]" class="message" [ngClass]="{'b-message': msg.sender === 'B'}">{{ msg.text }}
             </div>
           </div> -->
+      </div>
+      } @if (isTyping) {
+      <div
+        class="typing-indicator message-row"
+        [ngClass]="{ right: typingSender === 'B' }"
+      >
+        <div
+          class="message-typing"
+          [ngClass]="{ 'b-message-typing': typingSender === 'B' }"
+        >
+          <span class="dot"></span><span class="dot"></span
+          ><span class="dot"></span>
         </div>
-      }
-      @if (isTyping) {
-        <div class="typing-indicator message-row" [ngClass]="{'right': typingSender === 'B'}">
-          <div class="message-typing" [ngClass]="{'b-message-typing': typingSender === 'B'}">
-            Gravando<span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          </div>
-        </div>
-      }
-      @if (combinedDialogues.length === 0 && !isTyping) {
-        <div class="alert alert-info start-tip">
-          Clicar abaixo para iniciar simulação de diálogo em Libras
-        </div>
+      </div>
+      } @if (combinedDialogues.length === 0 && !isTyping) {
+      <div class="alert alert-info start-tip">
+        Clicar abaixo para iniciar simulação de diálogo em Libras
+      </div>
       }
 
       <div #bottom></div>
     </div>
     <div class="controls">
       @if (showAButton) {
-        <button class="button-green" (click)="showNext('A')">Pessoa A fala em Libras</button>
-      }
-      @if (showBButton) {
-        <button class="button-black" (click)="showNext('B')">Pessoa B fala em Libras</button>
-      }
-      @if (conversationEnded && !isTyping) {
-        <button (click)="resetConversation()">Resetar conversa</button>
+      <button class="button-green" (click)="showNext('A')">
+        Pessoa A fala em Libras
+      </button>
+      } @if (showBButton) {
+      <button class="button-black" (click)="showNext('B')">
+        Pessoa B fala em Libras
+      </button>
+      } @if (conversationEnded && !isTyping) {
+      <button (click)="resetConversation()">Resetar conversa</button>
       }
     </div>
   </div>

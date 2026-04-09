@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TermsComponent } from './pages/home/templates/footer/terms/terms.component';
-import { PrivacyComponent } from './pages/home/templates/footer/privacy/privacy.component';
 
 const routes: Routes = [
   {

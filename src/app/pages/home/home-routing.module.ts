@@ -25,6 +25,9 @@ import { InitialLibrasComponent } from './initial-libras/initial-libras.componen
 import { GestureFingersDetectorComponent } from 'src/app/shared/components/gesture-fingers-detector/gesture-fingers-detector.component';
 import { TermsComponent } from 'src/app/pages/home/templates/footer/terms/terms.component';
 import { PrivacyComponent } from 'src/app/pages/home/templates/footer/privacy/privacy.component';
+import { AuthGuard } from 'src/app/shared/guards/auth.guard';
+import { AccountComponent } from './account/account.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {
@@ -35,6 +38,14 @@ const routes: Routes = [
         path: '',
         component: InitialsComponent,
         data: { animation: 'HomePage' },
+      },
+      {
+        path: 'conta',
+        component: AccountComponent,
+      },
+      {
+        path: 'registro',
+        component: RegisterComponent,
       },
       {
         path: 'termos',
@@ -48,83 +59,102 @@ const routes: Routes = [
         path: processString(StringsNamesUrl.datilologia),
         component: FingerspellingComponent,
         data: { animation: 'FingerspellingPage' },
+        canActivate: [AuthGuard],
       },
       {
         path: `${processString(StringsNamesUrl.datilologia)}/:id`,
         component: FingerspellingDetailComponent,
         data: { animation: 'FingerspellingDetailPage' },
+        canActivate: [AuthGuard],
       },
       {
         path: 'alfabeto',
         component: AlphabetComponent,
         data: { animation: 'AlphabetPage' },
+        canActivate: [AuthGuard],
       },
       {
         path: 'alfabeto/:id',
         component: AlphabetDetailComponent,
         data: { animation: 'AlphabetDetailPage' },
+        canActivate: [AuthGuard],
       },
       {
         path: processString(StringsNamesUrl.nomes),
         component: NamesComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: processString(StringsNamesUrl.numeros),
         component: NumbersComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: processString(StringsNamesUrl.saudacoes),
         component: GrettingComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: processString(StringsNamesUrl.quiz),
         component: QuizComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: processString(StringsNamesUrl.dialogo),
         component: DialogueComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: processString(StringsNamesUrl.expressoesFaciais),
         component: FacialExpressionComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: processString(StringsNamesUrl.glossario),
         component: GlossaryComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: processString(StringsNamesUrl.assistenteVoz),
         component: SpeechComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: processString(StringsNamesUrl.jogos),
         component: GamesComponent,
         data: { animation: 'GamesPage' },
+        canActivate: [AuthGuard],
       },
       {
         path: processString(StringsNamesUrl.cacasPalavras),
         component: GameWordSearchComponent,
         data: { animation: 'GameWordSearchPage' },
+        canActivate: [AuthGuard],
       },
       {
         path: processString(StringsNamesUrl.detector),
         component: HandDetectorComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: processString(StringsNamesUrl.detectorDatilologia),
         component: GestureFingersDetectorComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: processString(StringsNamesUrl.visorComputacional),
         component: ComputerVisonComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: processString(StringsNamesUrl.fundamentoLibras),
         component: InitialLibrasComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'mapas',
         component: MapsComponent,
+        canActivate: [AuthGuard],
       },
     ],
   },

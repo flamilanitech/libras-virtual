@@ -21,7 +21,8 @@
               "@mediapipe/camera_utils",
               "@mediapipe/hands",
               "leaflet",
-              "tesseract.js"
+              "tesseract.js",
+              "hash_util.js"
             ],
             "outputPath": "dist/build",
             "index": "src/index.html",
