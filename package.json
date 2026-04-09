@@ -4,8 +4,7 @@
   "scripts": {
     "ng": "ng",
     "release": "npm version patch && npm run build && git push && git push --tags",
-    "preversion": "node version-update.js",
-    "version": "git add . && echo ✔️ Atualizando para versão $npm_package_version",
+    "version": "node version-update.js && git add . && echo ✔️ Atualizando para versão $npm_package_version",
     "prebuild": "node version-update.js",
     "build:patch": "node version-update.js --increment && npm run build",
     "build-dev": "ng build --configuration development",

@@ -31,9 +31,6 @@ jobs:
       - name: Instalar Dependências 📦
         run: npm ci
 
-      - name: Rodar Build (Produção) 🏗️
-        run: npm run build
-
       - name: Configurar Git 🛠️
         run: |
           git config --global user.name "github-actions[bot]"
@@ -41,9 +38,11 @@ jobs:
 
       - name: Incrementar Versão e Tag 🔖
         run: |
-          # Bumps version (e roda version-update.js via preversion)
-          # O commit gerado incluirá package.json e src/environments/version.ts
+          # Incrementa a versão, roda o script 'version' (sincroniza TS/Android) e gera o commit/tag
           npm version patch -m "🔖 Auto-release version %s [skip ci]"
+
+      - name: Rodar Build (Produção) 🏗️
+        run: npm run build
           
       - name: Subida para Develop (Push) ⬆️
         run: |

@@ -26,6 +26,8 @@ import { GestureFingersDetectorComponent } from 'src/app/shared/components/gestu
 import { TermsComponent } from 'src/app/pages/home/templates/footer/terms/terms.component';
 import { PrivacyComponent } from 'src/app/pages/home/templates/footer/privacy/privacy.component';
 import { AuthGuard } from 'src/app/shared/guards/auth.guard';
+import { AccountComponent } from './account/account.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {
@@ -36,6 +38,14 @@ const routes: Routes = [
         path: '',
         component: InitialsComponent,
         data: { animation: 'HomePage' },
+      },
+      {
+        path: 'conta',
+        component: AccountComponent,
+      },
+      {
+        path: 'registro',
+        component: RegisterComponent,
       },
       {
         path: 'termos',
