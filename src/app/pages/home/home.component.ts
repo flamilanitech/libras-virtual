@@ -7,7 +7,7 @@ import {
   RouterOutlet,
 } from '@angular/router';
 import { HeaderComponent } from './templates/header/header.component';
-import { directionalSlideAnimation, zoomFadeAnimation } from 'src/app/shared/animations/animations';
+import { fadeAnimation, headerAnimation } from 'src/app/shared/animations/animations';
 
 @Component({
   selector: 'app-home',
@@ -15,10 +15,14 @@ import { directionalSlideAnimation, zoomFadeAnimation } from 'src/app/shared/ani
   styleUrls: ['./home.component.css'],
   standalone: true,
   imports: [HeaderComponent, RouterOutlet, FooterComponent],
-  animations: [directionalSlideAnimation],
+  animations: [fadeAnimation, headerAnimation],
 })
 export class HomeComponent {
-  constructor(private contexts: ChildrenOutletContexts) {
+  constructor(private contexts: ChildrenOutletContexts, public router: Router) {
+  }
+
+  isHomePage(): boolean {
+    return this.router.url === '/' || this.router.url === '/home' || this.getRouteAnimationData() === 'HomePage';
   }
 
   getRouteAnimationData() {

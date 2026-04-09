@@ -52,7 +52,7 @@ export class HandDetectorComponent implements OnInit, OnDestroy {
 
   async createGestureRecognizer(): Promise<void> {
     const vision = await FilesetResolver.forVisionTasks(
-      'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision/wasm'
+      'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision/wasm',
     );
     this.gestureRecognizer = await GestureRecognizer.createFromOptions(vision, {
       baseOptions: {
@@ -95,7 +95,7 @@ export class HandDetectorComponent implements OnInit, OnDestroy {
       this.lastVideoTime = video.currentTime;
       const results = await this.gestureRecognizer.recognizeForVideo(
         video,
-        nowInMs
+        nowInMs,
       );
 
       canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
@@ -107,7 +107,7 @@ export class HandDetectorComponent implements OnInit, OnDestroy {
           drawingUtils.drawConnectors(
             landmarks,
             GestureRecognizer.HAND_CONNECTIONS,
-            { color: '#00FF00', lineWidth: 5 }
+            { color: '#00FF00', lineWidth: 5 },
           );
           drawingUtils.drawLandmarks(landmarks, {
             color: '#FF0000',

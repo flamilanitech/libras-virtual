@@ -12,6 +12,8 @@ export const environment = {
   imagePath,
   imgLoading,
   iconSign,
+  clerkPublishableKey:
+    'pk_test_c3RlcmxpbmctY29sbGllLTQxLmNsZXJrLmFjY291bnRzLmRldiQ',
 };
 
 /*

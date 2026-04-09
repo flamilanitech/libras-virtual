@@ -1,5 +1,7 @@
 <main>
-  <template-header></template-header>
+  <template-header
+    [@headerAnimation]="isHomePage() ? 'visible' : 'hidden'"
+  ></template-header>
   <article class="container" [@routeAnimations]="getRouteAnimationData()">
     <router-outlet></router-outlet>
   </article>

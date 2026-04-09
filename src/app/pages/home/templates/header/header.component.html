@@ -1,6 +1,13 @@
-   <header @headerSlide class="header" [ngStyle]="{ position: isWebAppRoute ? 'relative' : '', display: isWebAppRoute ? 'flex' : 'none' }">
-    <div class="divHeader">
-      <a routerLink="/home"><img class="logo" [src]="logo" alt="Logo Libras Virtual" /></a>
+<header
+  class="header"
+>
+  <div class="divHeader">
+    <a routerLink="/home"
+      ><img class="logo" [src]="logo" alt="Logo Libras Virtual"
+    /></a>
+    <div class="header-actions">
+      <clerk-user-button></clerk-user-button>
       <app-menu></app-menu>
     </div>
-  </header>
+  </div>
+</header>

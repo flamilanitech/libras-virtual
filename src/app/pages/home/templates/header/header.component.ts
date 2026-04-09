@@ -5,13 +5,17 @@ import { MenuComponent } from '../../../../shared/components/menu/menu.component
 import { trigger, transition, style, animate } from '@angular/animations';
 import { filter } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { ClerkService, ClerkUserButtonComponent } from 'ngx-clerk';
 
 @Component({
   selector: 'template-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
   standalone: true,
-  imports: [RouterLink, MenuComponent, CommonModule],
+  host: {
+    'style': 'display: block;'
+  },
+  imports: [RouterLink, MenuComponent, CommonModule, ClerkUserButtonComponent],
   animations: [
     trigger('headerSlide', [
       // ENTRAR → vem de cima (de -100%)
@@ -36,11 +40,11 @@ export class HeaderComponent {
   isWebAppRoute = false;
   logo = environment.imagePath;
 
- constructor(public router: Router) {
-    this.router.events.pipe(
-      filter((event) => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      this.isWebAppRoute = this.router.url === '/';
-    });
+  constructor(public router: Router) {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.isWebAppRoute = this.router.url === '/';
+      });
   }
 }

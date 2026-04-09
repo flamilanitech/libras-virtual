@@ -7,6 +7,7 @@ import {
   animate,
   style,
   query,
+  state,
 } from '@angular/animations';
 
 export const transitionAnimation = animation([
@@ -168,7 +169,7 @@ export const zoomFadeAnimation = trigger('routeAnimations', [
 
 export const directionalSlideAnimation = trigger('routeAnimations', [
   // (⬅️ slide da esquerda) - HomePage
-/*   transition('* => HomePage', [
+  /*   transition('* => HomePage', [
     style({ position: 'relative' }),
     query(
       ':enter, :leave',
@@ -211,7 +212,7 @@ export const directionalSlideAnimation = trigger('routeAnimations', [
     ]),
   ]), */
 
-    transition('* => HomePage', [
+  transition('* => HomePage', [
     style({ position: 'relative' }),
     query(
       ':enter, :leave',
@@ -299,7 +300,7 @@ export const directionalSlideAnimation = trigger('routeAnimations', [
     ]),
   ]),
 
-      // Zoom-fade padrão para outras rotas
+  // Zoom-fade padrão para outras rotas
   transition('* => FingerspellingDetailPage', [
     style({ position: 'relative' }),
     query(
@@ -391,7 +392,7 @@ export const directionalSlideAnimation = trigger('routeAnimations', [
     ]),
   ]),
 
-    // Zoom-fade padrão para outras rotas
+  // Zoom-fade padrão para outras rotas
   transition('* => AlphabetDetailPage', [
     style({ position: 'relative' }),
     query(
@@ -483,8 +484,8 @@ export const directionalSlideAnimation = trigger('routeAnimations', [
     ]),
   ]),
 
- // Zoom-fade padrão para outras rotas
-    transition('* => FingerspellingPage', [
+  // Zoom-fade padrão para outras rotas
+  transition('* => FingerspellingPage', [
     style({ position: 'relative' }),
     query(
       ':enter, :leave',
@@ -673,3 +674,54 @@ Copyright Google LLC. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that
 can be found in the LICENSE file at https://angular.io/license
 */
+
+export const fadeAnimation = trigger('routeAnimations', [
+  transition('* <=> *', [
+    style({ position: 'relative' }),
+    query(':enter, :leave', [
+      style({
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+      })
+    ], { optional: true }),
+    query(':enter', [
+      style({ opacity: 0 })
+    ], { optional: true }),
+    query(':leave', animateChild(), { optional: true }),
+    group([
+      query(':leave', [
+        animate('300ms ease-in', style({ opacity: 0 }))
+      ], { optional: true }),
+      query(':enter', [
+        animate('300ms ease-out', style({ opacity: 1 }))
+      ], { optional: true })
+    ]),
+    query('@*', animateChild(), { optional: true }),
+  ])
+]);
+
+export const headerAnimation = trigger('headerAnimation', [
+  state('visible', style({
+    height: '*',
+    opacity: 1,
+    transform: 'translateY(0)',
+    visibility: 'visible',
+    overflow: 'visible'
+  })),
+  state('hidden', style({
+    height: '0',
+    opacity: 0,
+    transform: 'translateY(-100%)',
+    visibility: 'hidden',
+    paddingTop: '0',
+    paddingBottom: '0',
+    marginTop: '0',
+    marginBottom: '0',
+    overflow: 'hidden'
+  })),
+  transition('visible <=> hidden', [
+    animate('500ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+  ])
+]);
