@@ -30,6 +30,13 @@ export class DialogService {
     // Create dialogRef to return
     const dialogRef = new DialogRef(overlayRef);
 
+    // Close on backdrop click unless disableClose is true
+    if (!config?.disableClose) {
+      overlayRef.backdropClick().subscribe(() => {
+        dialogRef.close();
+      });
+    }
+
     // Create injector to be able to reference the DialogRef from within the component
     const injector = Injector.create({
       parent: this.injector,

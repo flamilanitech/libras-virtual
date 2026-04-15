@@ -1,0 +1,11 @@
+<div class="image-dialog-container">
+  <button class="close-btn" (click)="close()">
+    <bi name="x-lg"></bi>
+  </button>
+  <div class="image-wrapper">
+    <img [src]="data.image" [alt]="data.title" class="zoom-image" />
+  </div>
+  <div class="image-caption" *ngIf="data.title">
+    {{ data.title }}
+  </div>
+</div>

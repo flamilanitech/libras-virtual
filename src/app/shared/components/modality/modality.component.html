@@ -1,0 +1,59 @@
+<div class="modality-container" *ngIf="modality">
+  <div class="row align-items-center">
+    <!-- Image Section -->
+    <div class="col-12 text-center">
+      <div class="image-wrapper" (click)="openZoom()">
+        <img
+          [src]="modality.image"
+          [alt]="modality.title"
+          class="modality-img"
+        />
+        <div class="zoom-overlay">
+          <bi name="zoom-in"></bi>
+          <span>Clique para ampliar</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info Section -->
+    <div class="col-12">
+      <div class="content-section text-center">
+        <div class="title-container mt-3 mb-3">
+          <h2 class="main-title">{{ modality.title }} *</h2>
+        </div>
+
+        <p class="description" *ngIf="modality.description">
+          {{ modality.description }}
+        </p>
+
+        <div
+          class="features mt-4 justify-content-center"
+          *ngIf="modality.id === 1"
+        >
+          <div class="feature-item">
+            <i class="bi bi-eye"></i>
+            <span>Comunicação Visual</span>
+          </div>
+          <div class="feature-item">
+            <i class="bi bi-arrows-move"></i>
+            <span>Uso do Espaço</span>
+          </div>
+        </div>
+
+        <div
+          class="features mt-4 justify-content-center"
+          *ngIf="modality.id === 2"
+        >
+          <div class="feature-item">
+            <i class="bi bi-megaphone"></i>
+            <span>Comunicação Oral</span>
+          </div>
+          <div class="feature-item">
+            <i class="bi bi-ear"></i>
+            <span>Percepção Auditiva</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

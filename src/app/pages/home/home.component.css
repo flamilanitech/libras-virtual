@@ -24,3 +24,13 @@
 main.header-hidden {
   transition: margin-top 0.3s ease;
 }
+
+.container-main {
+  min-height: calc(100vh - 160px);
+  overflow: hidden;
+}
+
+.route-wrapper {
+  position: relative;
+  width: 100%;
+}

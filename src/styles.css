@@ -55,10 +55,6 @@ main {
   overflow: hidden;
 }
 
-article {
-  margin: 10px;
-}
-
 @media only screen and (max-width: 667px) {
   .sectionTop span {
     font-size: 18px !important;
@@ -255,6 +251,7 @@ a:active {
 
 .overlay-backdrop {
   background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
 }
 
 .cdk-overlay-backdrop {
@@ -274,6 +271,8 @@ a:active {
   flex-direction: column;
   background-color: #fff;
   padding: 20px;
+  border-radius: 10px;
+  margin: 10px;
 }
 
 #video-container {

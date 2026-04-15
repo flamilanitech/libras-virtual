@@ -2,6 +2,7 @@ export class StringsNamesUrl {
   static glossario = 'Glossário';
   static fundamentoLibras = 'Fundamento de Libras';
   static datilologia = 'Datilologia';
+  static modalidades = 'Modalidades';
   static alfabeto = 'Alfabeto';
   static nomes = 'Nomes';
   static numeros = 'Números';

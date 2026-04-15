@@ -28,6 +28,7 @@ import { PrivacyComponent } from 'src/app/pages/home/templates/footer/privacy/pr
 import { AuthGuard } from 'src/app/shared/guards/auth.guard';
 import { AccountComponent } from './account/account.component';
 import { RegisterComponent } from './register/register.component';
+import { ModalitiesComponent } from './modalities/modalities.component';
 
 const routes: Routes = [
   {
@@ -87,11 +88,13 @@ const routes: Routes = [
       {
         path: processString(StringsNamesUrl.numeros),
         component: NumbersComponent,
+        data: { animation: 'NumbersPage' },
         canActivate: [AuthGuard],
       },
       {
         path: processString(StringsNamesUrl.saudacoes),
         component: GrettingComponent,
+        data: { animation: 'GrettingPage' },
         canActivate: [AuthGuard],
       },
       {
@@ -149,6 +152,13 @@ const routes: Routes = [
       {
         path: processString(StringsNamesUrl.fundamentoLibras),
         component: InitialLibrasComponent,
+        data: { animation: 'InitialLibrasPage' },
+        canActivate: [AuthGuard],
+      },
+      {
+        path: processString(StringsNamesUrl.modalidades),
+        component: ModalitiesComponent,
+        data: { animation: 'ModalitiesPage' },
         canActivate: [AuthGuard],
       },
       {

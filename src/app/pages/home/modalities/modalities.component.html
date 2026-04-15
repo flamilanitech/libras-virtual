@@ -1,0 +1,32 @@
+<card-ui [cardStyle]="'containerCardNumbers justifyContentStart'">
+  <app-breadcrumb [title]="title" [link]="link"></app-breadcrumb>
+</card-ui>
+
+<section class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
+        <mat-tab *ngFor="let modality of modalities" [label]="modality.title">
+          <div class="p-2">
+            <app-modality [modality]="modality"></app-modality>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+
+  <div class="row mt-5 mb-5 bibliographic-reference">
+    <div class="col-12 text-center text-muted">
+      <hr class="w-25 mx-auto mb-4" />
+      <p>
+        <strong>* Felipe, Tanya A.</strong><br />
+        <em>Libras em Contexto: Curso Básico : Livro do Professor.</em>
+      </p>
+      <p>
+        Tanya A. Felipe de Souza e Myrna Salerno Monteiro. – Brasília:
+        Ministério da Educação, Secretaria de Educação Especial, 2006. 6a.
+        Edição 448 p.: il.
+      </p>
+    </div>
+  </div>
+</section>

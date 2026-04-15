@@ -5,6 +5,7 @@ import { StringsNamesUrl } from './strings-url/strings-names';
 const img01 = './../../../assets/imgs/nomes.png';
 const img02 = './../../../assets/imgs/numeros.png';
 const img03 = './../../../assets/imgs/saudacoes.png';
+const img04 = './../../../assets/imgs/modalidades.png';
 
 export const cInitialLibras: iInitials[] = [
   {
@@ -26,6 +27,13 @@ export const cInitialLibras: iInitials[] = [
     link: `/${processString(StringsNamesUrl.saudacoes)}`,
     title: StringsNamesUrl.saudacoes,
     image: img03,
+    active: true,
+  },
+  {
+    id: '4',
+    link: `/${processString(StringsNamesUrl.modalidades)}`,
+    title: StringsNamesUrl.modalidades,
+    image: img04,
     active: true,
   },
 ];

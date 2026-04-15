@@ -1,0 +1,16 @@
+.bibliographic-reference {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #6c757d;
+}
+
+.bibliographic-reference hr {
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  width: 50px;
+  margin: 0 auto 1.5rem auto;
+}
+
+.bibliographic-reference p {
+  margin-bottom: 0.5rem;
+}
